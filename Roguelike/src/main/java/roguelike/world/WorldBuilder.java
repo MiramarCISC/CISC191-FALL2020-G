@@ -89,29 +89,120 @@ public class WorldBuilder {
 		return this;
 	}
 	
-	public WorldBuilder createRandomWalkCave(int seed, int startX, int startY, int length) {
-		Random rnd = new Random(seed);
-		int direction;
-		int x = startX;
-		int y = startY;
+	public WorldBuilder createRandomWalkCave(int seed, int x, int y, int length) {
+		int probDir=(int)Math.random()*4;
+		int failedInRow=0;
+		int steps=0;
+		int totalsteps=0;
+		int changeDir=50;
+		double probUp=0.25;
+		double probDown=0.25;
+		double probRight=0.25;
+		double probLeft=0.25;
+		int thickness=5;
+		while(true) {
+			if(steps>changeDir||failedInRow>20) {
+				probDir=(int)Math.random()*4;
+				totalsteps+=steps;
+				steps=0;
+			}
+			probUp=0.05;
+			probDown=0.05;
+			probRight=0.05;
+			probLeft=0.05;
+			if(steps>=changeDir)
+			switch(probDir) {
+			case 0: 
+			probUp=0.9;
+			probDown=0;
+			break;
+			case 1:
+			probDown=0.9;
+			probUp=0;
+			break;
+			case 2:
+			probRight=0.9;
+			probLeft=0;
+			break;
+			case 3:
+			probLeft=0.9;
+			probRight=0;
+			}
 		
-		for (int i=0; i<length; i++) {
-			direction = rnd.nextInt(4);
-			if (direction == 0 && (x+1) < (width-1)) {
-				x += 1;
-			} else if (direction == 1 && (x-1) > 0) {
-				x -= 1;
-			} else if (direction == 2 && (y+1) < (height-1)) {
-				y += 1;
-			} else if (direction == 3 && (y-1) > 0) {
-				y -= 1;
+			double dir = Math.random();
+			
+			if(dir<probDown) {
+				//go down
+				if(rectInBounds(x-(thickness/2),y-1, thickness, 1)) {
+					for(int i = x-thickness/2; i<x-thickness/2+thickness+1; i++) {
+						tiles[i][y-1]=createTile("ground",i,y-1);
+					}
+					y--;
+					steps++;
+					failedInRow=0;
+				}else {
+					failedInRow++;
+				}
+				
+				
+			}else if(dir>probDown&&dir<probDown+probUp) {
+				//go up
+				if(rectInBounds(x-(thickness/2),y+1, thickness, 1)) {
+					for(int i = x-thickness/2; i<x-thickness/2+thickness+1; i++) {
+						tiles[i][y+1]=createTile("ground",i,y+1);
+					}
+					y++;
+					steps++;
+					failedInRow=0;
+				}else {
+					failedInRow++;
+				}
+			}else if(dir>probDown+probUp&&dir<probDown+probUp+probLeft) {
+				//go left
+				if(rectInBounds(x-1,y-(thickness/2), 1, thickness)) {
+					for(int i = y-thickness/2; i<y-thickness/2+thickness+1; i++) {
+						tiles[x-1][i]=createTile("ground",x-1,i);
+					}
+					x--;
+					steps++;
+					failedInRow=0;
+				}else {
+					failedInRow++;
+				}
+			}else if(dir>probDown+probUp+probLeft&&dir<probDown+probUp+probLeft+probRight) {
+				//go right
+				if(rectInBounds(x+1,y-(thickness/2), 1, thickness)) {
+					for(int i = y-thickness/2; i<y-thickness/2+thickness+1; i++) {
+						tiles[x+1][i]=createTile("ground",x+1,i);
+					}
+					x++;
+					steps++;
+					failedInRow=0;
+				}else {
+					failedInRow++;
+				}
+			}
+			if(totalsteps>length) {
+				break;
 			}
 			
-			tiles[x][y] = createTile("ground", x, y);
 		}
 
 		return this;
 	}
+	
+	public boolean rectInBounds(int i, int j, int w, int h) {
+		if(pointInBounds(i,j)&&pointInBounds(i+w,j+h))
+			return true;
+		return false;
+	}
+	
+	public boolean pointInBounds(int i, int j) {
+		if(i<tiles.length&&i>=0&&j<tiles[i].length&&j>=0)
+			return true;
+		return false;
+	}
+	
 	
 	public World build() {
 		return new World(tiles, creatures);

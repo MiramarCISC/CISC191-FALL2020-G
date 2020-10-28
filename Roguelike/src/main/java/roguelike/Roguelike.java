@@ -33,8 +33,8 @@ public class Roguelike {
 	
 	private Rectangle gameViewArea;
 	
-	private static final int mapWidth = 100;
-	private static final int mapHeight = 100;
+	private static final int mapWidth = 1000;
+	private static final int mapHeight = 1000;
 	
 	private Interface ui;
 	
@@ -85,10 +85,10 @@ public class Roguelike {
 	}
 	
 	private void createWorld(){
-		player = new Creature(creatureData.get("player"), 10, 10);
+		player = new Creature(creatureData.get("player"), 30, 30);
 		world = new WorldBuilder(tileData, creatureData, mapWidth, mapHeight)
 				    .fill("wall")
-				    .createRandomWalkCave(12232, 10, 10, 6000)
+				    .createRandomWalkCave(12232, 30, 30, 6000)
 				    .populateWorld(10)
 					.build();
 		world.player = player;
