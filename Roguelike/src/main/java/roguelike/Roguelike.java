@@ -35,6 +35,7 @@ public class Roguelike {
 	
 	private static final int mapWidth = 1000;
 	private static final int mapHeight = 1000;
+	//minor boundary changes to fit large caves
 	
 	private Interface ui;
 	
@@ -89,6 +90,7 @@ public class Roguelike {
 		world = new WorldBuilder(tileData, creatureData, mapWidth, mapHeight)
 				    .fill("wall")
 				    .createRandomWalkCave(12232, 30, 30, 6000)
+				    .addBorders()
 				    .populateWorld(10)
 					.build();
 		world.player = player;
