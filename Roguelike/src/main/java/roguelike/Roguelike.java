@@ -35,7 +35,6 @@ public class Roguelike {
 	
 	private static final int mapWidth = 1000;
 	private static final int mapHeight = 1000;
-	//minor boundary changes to fit large caves
 	
 	private Interface ui;
 	
@@ -56,7 +55,7 @@ public class Roguelike {
 	
 	public Map<String, Map<String, String>> loadData(InputStream inputStream) {
 		Map<String, Map<String, String>> entityMap = new HashMap<>();
-		String line = "";
+		String line;
 		String[] attributeNames = new String[10];
 		
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -91,7 +90,7 @@ public class Roguelike {
 				    .fill("wall")
 				    .createRandomWalkCave(12232, 30, 30, 6000)
 				    .addBorders()
-				    .populateWorld(10)
+				    .populateWorld(20)
 					.build();
 		world.player = player;
 		world.addEntity(player);
@@ -133,7 +132,8 @@ public class Roguelike {
 	public void run() {
 		isRunning = true;
 
-		while(isRunning) {
+		// Run the game until it is stopped or until the player dies.
+		while(isRunning && !player.isDead()) {
 			long startTime = System.nanoTime();
 			
 			processInput();

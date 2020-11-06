@@ -8,7 +8,7 @@ import java.util.Map;
 public class Tile extends Entity {
 	
     private Color backgroundColor;
-    private boolean blocked = false;
+    private boolean blocked;
     
     public boolean isBlocked() {return this.blocked;}
     public Color getBackgroundColor() {return this.backgroundColor;}
@@ -17,6 +17,6 @@ public class Tile extends Entity {
     {
     	super(tileData, xpos, ypos);
         backgroundColor = Roguelike.stringToColor(tileData.get("backgroundColor"));
-        blocked = Boolean.valueOf(tileData.get("blocked"));
+        blocked = Boolean.parseBoolean(tileData.get("blocked"));
     }
 }

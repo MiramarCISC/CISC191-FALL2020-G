@@ -6,7 +6,9 @@ import roguelike.entities.Tile;
 
 import java.awt.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class World {
 	
@@ -68,9 +70,12 @@ public class World {
 	}
 	
 	public void update() {
+		// Remove from the game any creatures that are dead.
+		creatures.removeIf(Creature::isDead);
+		// Call the update method for all creatures, with the exception of the player.
 		creatures.stream()
-		.filter(creature -> creature.getType() != "player")
-		.forEach(creature -> creature.update(this));
+			.filter(creature -> !creature.getType().equals("player"))
+			.forEach(creature -> creature.update(this));
 	}
 	
 	public Set<String> getTileTypesInArea(Rectangle rectangle) {
@@ -101,5 +106,22 @@ public class World {
 		}
 		
 		return creatureTypes;
+	}
+
+	/* Search a specified area for creatures.
+	 * 	@param      x X-coordinate of search center.
+	 * 	@param      y Y-coordinate of search center.
+	 * 	@param  width Width of search area.
+	 * 	@param height Height of search area.
+	 *
+	 * @return A list of creatures in the specified search area.
+	 */
+	public List<Creature> getCreaturesInArea(int x, int y, int width, int height) {
+		return creatures.stream()
+				.filter(creature -> creature.getX() > x - (width / 2) &&
+									creature.getX() < x + (width / 2) &&
+									creature.getY() > y - (height / 2) &&
+									creature.getY() < y + (height / 2))
+				.collect(Collectors.toList());
 	}
 }

@@ -88,9 +88,9 @@ public class WorldBuilder {
 		
 		return this;
 	}
-	
+
+	// Method by Christopher.
 	public WorldBuilder createRandomWalkCave(int seed, int x, int y, int length) {
-		//entire method by Christopher
 		int probDir=(int)Math.random()*4;
 		int failedInRow=0;
 		int steps=0;
@@ -191,13 +191,15 @@ public class WorldBuilder {
 
 		return this;
 	}
-	//methods below by Christopher
+
+	// Method by Christopher.
 	public boolean rectInBounds(int i, int j, int w, int h) {
 		if(pointInBounds(i,j)&&pointInBounds(i+w,j+h))
 			return true;
 		return false;
 	}
-	
+
+	// Method by Christopher.
 	public boolean pointInBounds(int i, int j) {
 		if(i<tiles.length&&i>=0&&j<tiles[i].length&&j>=0)
 			return true;
