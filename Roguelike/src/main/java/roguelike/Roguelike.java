@@ -102,15 +102,16 @@ public class Roguelike {
 	    if (event instanceof KeyEvent) {
 	    	KeyEvent keypress = (KeyEvent)event;
 	    	switch (keypress.getKeyCode()){
-				case KeyEvent.VK_LEFT: 
+				case KeyEvent.VK_A:
 					player.move(world, -1, 0); 
 					break;
-				case KeyEvent.VK_RIGHT: 
-					player.move(world, 1, 0); break;
-				case KeyEvent.VK_UP: 
+				case KeyEvent.VK_D:
+					player.move(world, 1, 0);
+					break;
+				case KeyEvent.VK_W:
 					player.move(world, 0, -1); 
 					break;
-				case KeyEvent.VK_DOWN: 
+				case KeyEvent.VK_S:
 					player.move(world, 0, 1); 
 					break;
 			}
