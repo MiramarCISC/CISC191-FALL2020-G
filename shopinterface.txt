@@ -1,0 +1,139 @@
+public class Shop {
+    public static void main(String args[]) {
+        for(int i = 0; i < 82; i++){
+            System.out.print("-");
+        }
+        System.out.println();
+        for(int i = 0; i < 28; i++){
+            System.out.print("-");
+            for(int j = 0; j < 80; j++){
+            System.out.print(" ");
+            }
+            System.out.println("-");
+        }
+        for(int i = 0; `i < 82; i++){
+            System.out.print("-");
+        }
+    }
+}
+
+
+
+At the top of the screen should be printed "To leave this shop press X"
+
+
+
+public class shopItem{
+
+private String shopItemName
+
+private int shopItemPrice
+
+private String[] shopItemStats = 
+
+
+
+
+String[][] shopItems = new String[6][6];
+//name followed by price followed by stat boost information with sections separated by |, s is strength d is dexterity and so on, note that we have all of unicode at our disposal so we can take phonetic symbols that look like regular letters when we want something else that starts with the same letter
+shopItems[0][0] = "testSword|4|s1|d1";
+
+
+
+//loop for first dimension of shopItems
+for(int i = 0; int i < shopItems.length; i++){
+//loop for second dimension of shopItems
+for(int j = 0; int j < shopItems[0].length; j++){
+Scanner sc = new Scanner(shopItems[i][j]);
+//mode for processing characters in a shopItems string, if 0 then name, if 1 then price, if above then stat boost information
+int typeOfInfo = 0;
+//loop for all characters in a shopItems string
+for(int k = 0; int k < shopItems[i][j].length(); k++){
+Char shopItemTestChar = sc.next().charAt(k);
+//mode for processing characters changes every time pipe | appears
+if(shopItemTestChar == '|'){
+typeOfInfo++;
+}
+//when the char is not |, print in a certain way based on typeOfInfo
+elseif(typeOfInfo = 0){
+System.out.print(shopItemTestChar);
+}
+elseif(typeOfInfo = 1){
+System.out.println(shopItemTestChar + " Coins");
+System.out.println();
+}
+else{
+String shopItemAttribute = new String();
+if(shopItemTestChar == 's'){
+shopItemAttribute = "Strength";
+}
+if(shopItemTestChar == 'd'){
+shopItemAttribute = "Dexterity";
+}
+if(shopItemTestChar == 'h'){
+shopItemAttribute = "Health";
+}
+//move to the next character for the number of the stat boost of the item
+k++;
+System.out.print("+ " + sc.next()charAt(k) + " " + shopItemAttribute);
+}
+}
+}
+}
+
+
+
+}
+}
+
+
+//coordinates of visual location of player's reticle on screen and internal location of player's choice of item in array
+private int storeYPos = 0;
+private int storeYPos = 0;
+
+
+
+playerInputScanner is something I'm writing in for whatever scanner is used to continuously assess player inputs, I believe this scanner should be a public variable or the shop should take it in as an argument
+
+//move up
+if(playerInputScanner.next() == w){
+storeYPos++;
+}
+
+//move left
+if(playerInputScanner.next() == a){
+storeXPos--;
+}
+
+//move down
+if(playerInputScanner.next() == s){
+storeYPos--;
+}
+
+//move right
+if(playerInputScanner.next() == d){
+storeXPos++;
+}
+
+//when at top, don't move up
+if(storeYPos < 0){
+storeYPos == 0;
+}
+
+//when at left, don't move left
+if(storeXPos < 0){
+storeXPos == 0;
+}
+
+//when at bottom, don't move down
+if(storeYPos > 6){
+storeYPos == 6;
+}
+
+//when at right, don't move right
+if(storeXPos > 6){
+storeXPos == 6;
+}
+
+
+I have figured out that the shop should probably be a thread, which is ended when the player presses x.
