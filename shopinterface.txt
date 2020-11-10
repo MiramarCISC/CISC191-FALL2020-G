@@ -96,22 +96,22 @@ private int storeYPos = 0;
 playerInputScanner is something I'm writing in for whatever scanner is used to continuously assess player inputs, I believe this scanner should be a public variable or the shop should take it in as an argument
 
 //move up
-if(playerInputScanner.next() == w){
+if(br.read() == w){
 storeYPos++;
 }
 
 //move left
-if(playerInputScanner.next() == a){
+if(br.read() == a){
 storeXPos--;
 }
 
 //move down
-if(playerInputScanner.next() == s){
+if(br.read() == s){
 storeYPos--;
 }
 
 //move right
-if(playerInputScanner.next() == d){
+if(br.read() == d){
 storeXPos++;
 }
 
