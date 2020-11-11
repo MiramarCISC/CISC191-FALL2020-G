@@ -1,21 +1,149 @@
 public class Shop {
     public static void main(String args[]) {
+	//creates box out of dash - characters
         for(int i = 0; i < 82; i++){
-            System.out.print("-");
+            System.out.print("=");
         }
         System.out.println();
         for(int i = 0; i < 28; i++){
-            System.out.print("-");
+            System.out.print("ǁ");
             for(int j = 0; j < 80; j++){
             System.out.print(" ");
             }
-            System.out.println("-");
+//Implement code for taking from the array of items
+//Implement code that specifies the second line after the ==== is the --- line, specify equation to define lines with ----
+//Specify -    -    line before taking from the array of items and -     -    line before ---------
+            System.out.println("ǁ");
         }
-        for(int i = 0; `i < 82; i++){
-            System.out.print("-");
+        for(int i = 0; i < 82; i++){
+            System.out.print("=");
         }
     }
 }
+
+
+This is my preferred look for an item box, imagine that the coins line is yellow and the stats are all different colors, notice that everything is centerred and when something has a different number of spaces on either side a space is automatically added in between words. In the case of an item name, this should invariably be between "of" and the next word. In the case of a price, which is whenever the number of digits in the price is odd, this invariably should be between the price and "Coins".
+
+=================================================================================================================
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   ǁ
+ǁ   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   ǁ
+ǁ   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   ǁ
+ǁ   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   -  Sword of  Achilles  -   ǁ
+ǁ   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   -       4  Coins       -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+=================================================================================================================
+
+
+
+
+
+This is the bare minimum of what an item box should look like. Imagine just black and white. No centering.
+
+=================================================================================================================
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of Achilles   -   -  Sword of Achilles   -   -  Sword of Achilles   -   -  Sword of Achilles   -   ǁ
+ǁ   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of Achilles   -   -  Sword of Achilles   -   -  Sword of Achilles   -   -  Sword of Achilles   -   ǁ
+ǁ   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of Achilles   -   -  Sword of Achilles   -   -  Sword of Achilles   -   -  Sword of Achilles   -   ǁ
+ǁ   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+ǁ                                                                                                               ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   -  Sword of Achilles   -   -  Sword of Achilles   -   - Cuirass of Agamemnon -   -  Sword of Achilles   -   ǁ
+ǁ   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   -  4 Coins             -   ǁ
+ǁ   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   -  Str+1 Dex+1 Int+1   -   ǁ
+ǁ   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   -  Luk+1 Hea+1         -   ǁ
+ǁ   -                      -   -                      -   -                      -   -                      -   ǁ
+ǁ   ------------------------   ------------------------   ------------------------   ------------------------   ǁ
+ǁ                                                                                                               ǁ
+=================================================================================================================
+
+
+List of possible things to sell, to make it easy name after mythological characters
+
+
+Sword
+
+Shield
+
+Helmet
+
+Potion
+
+Shoes
+
+Cuirass
+
+Book
+
+
+Cuirass of Agamemnon is the longest name I could come up with, helped me determine width of item boxes
+
+
+
+
+
+
+//if the line is odd numbered (every second line after the top line of dashes) there will 
+if(i%2 == 1){
 
 
 
@@ -34,7 +162,7 @@ private String[] shopItemStats =
 
 
 
-String[][] shopItems = new String[6][6];
+String[][] shopItems = new String[4][4];
 //name followed by price followed by stat boost information with sections separated by |, s is strength d is dexterity and so on, note that we have all of unicode at our disposal so we can take phonetic symbols that look like regular letters when we want something else that starts with the same letter
 shopItems[0][0] = "testSword|4|s1|d1";
 
@@ -75,7 +203,7 @@ shopItemAttribute = "Health";
 }
 //move to the next character for the number of the stat boost of the item
 k++;
-System.out.print("+ " + sc.next()charAt(k) + " " + shopItemAttribute);
+System.out.print("+ " + sc.next()charAt(k) + shopItemAttribute);
 }
 }
 }
@@ -126,14 +254,15 @@ storeXPos == 0;
 }
 
 //when at bottom, don't move down
-if(storeYPos > 6){
-storeYPos == 6;
+if(storeYPos > 4){
+storeYPos == 4;
 }
 
 //when at right, don't move right
-if(storeXPos > 6){
-storeXPos == 6;
+if(storeXPos > 4){
+storeXPos == 4;
 }
+
 
 
 I have figured out that the shop should probably be a thread, which is ended when the player presses x.
