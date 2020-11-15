@@ -20,17 +20,17 @@ public class Creature extends Entity {
         this.isDead = false;							// Initialize isDead to false.
     }
 
-    /* @return True if creature is has been killed. */
+    /** @return True if creature is has been killed. */
 	public boolean isDead() {
 		return isDead;
 	}
 
-	/* @return The creature's current hitPoints. */
+	/** @return The creature's current hitPoints. */
     private int getHitPoints() {
     	return hitPoints;
     }
 
-    /* Modifies the creature's hitPoints by adding a specified amount.
+    /** Modifies the creature's hitPoints by adding a specified amount.
      * 	@param amount Pass a positive number to heal or negative number to damage.
      */
     private void modifyHitPoints(int amount) {
@@ -42,7 +42,7 @@ public class Creature extends Entity {
 		}
 	}
 
-	/* Move the creature to a new tile, else if the tile is blocked perform an action based on the blocking entity.
+	/** Move the creature to a new tile, else if the tile is blocked perform an action based on the blocking entity.
      * 	@param world The game's world object.
      * 	@param    dx Movement distance in the horizontal plane.
      * 	@param	  dy Movement distance in the vertical plane.
@@ -73,7 +73,7 @@ public class Creature extends Entity {
     	}
     }
 
-	/* Attacks a creature.
+	/** Attacks a creature.
 	 * 	@param creature The creature being attacked.
 	 */
     public void attackCreature(Creature creature) {

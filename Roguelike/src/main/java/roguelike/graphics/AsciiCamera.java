@@ -17,8 +17,7 @@ public class AsciiCamera {
     int mapWidth;
     int mapHeight;
 
-    public AsciiCamera(Rectangle Bounds, Rectangle viewArea)
-    {
+    public AsciiCamera(Rectangle Bounds, Rectangle viewArea) {
         screenWidth = viewArea.width;
         screenHeight = viewArea.height;
     	
@@ -27,8 +26,7 @@ public class AsciiCamera {
     }
 
     
-    public Point GetCameraOrigin(int xfocus, int yfocus)
-    {
+    public Point GetCameraOrigin(int xfocus, int yfocus) {
         int spx = Math.max(0, Math.min(xfocus - screenWidth / 2, mapWidth - screenWidth));
         int spy = Math.max(0, Math.min(yfocus - screenHeight / 2, mapHeight - screenHeight));
         return new Point(spx, spy);
@@ -58,8 +56,8 @@ public class AsciiCamera {
         
         origin = GetCameraOrigin(xfocus, yfocus);
         
-		for (int x = 0; x < screenWidth; x++){
-			for (int y = 0; y < screenHeight; y++){
+		for (int x = 0; x < screenWidth; x++) {
+			for (int y = 0; y < screenHeight; y++) {
                 tile = world.tile(origin.x + x, origin.y + y);
                 terminal.write(tile.getGlyph(), x, y, tile.getColor(), tile.getBackgroundColor());
             }

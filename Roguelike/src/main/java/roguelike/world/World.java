@@ -5,9 +5,8 @@ import roguelike.entities.Entity;
 import roguelike.entities.Tile;
 
 import java.awt.*;
-import java.util.HashSet;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class World {
@@ -21,13 +20,13 @@ public class World {
 	public int width() { return width; }
 	public int height() { return height; }
 	
-	public World(Tile[][] tiles){
+	public World(Tile[][] tiles) {
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
 	}
 	
-	public World(Tile[][] tiles, Set<Creature> creatures){
+	public World(Tile[][] tiles, Set<Creature> creatures) {
 		this.creatures = new HashSet<>();
 		this.creatures.addAll(creatures);
 		this.tiles = tiles;
@@ -39,7 +38,7 @@ public class World {
 		this.creatures.add(creature);
 	}
 	
-	public Tile tile(int x, int y){
+	public Tile tile(int x, int y) {
 		if (x < 0 || x >= width || y < 0 || y >= height)
 			return null;
 		else
@@ -74,41 +73,62 @@ public class World {
 		creatures.removeIf(Creature::isDead);
 		// Call the update method for all creatures, with the exception of the player.
 		creatures.stream()
-			.filter(creature -> !creature.getType().equals("player"))
+			.filter(creature -> !creature.equals(player))
 			.forEach(creature -> creature.update(this));
 	}
-	
+
 	public Set<String> getTileTypesInArea(Rectangle rectangle) {
-		Set<String> tileTypes = new HashSet<String>();
+		Set<String> tileTypes = new HashSet<>();
 		Tile tile;
-		
-		for (int y=(int) rectangle.getY(); y < rectangle.getMaxY(); y += 1) {
-			for (int x=(int) rectangle.getX(); x < rectangle.getMaxX(); x += 1) {
+
+		for (int y = (int)rectangle.getY(); y < rectangle.getMaxY(); y++) {
+			for (int x = (int)rectangle.getX(); x < rectangle.getMaxX(); x++) {
 				tile = this.tiles[x][y];
 				if (tile != null) {
 					tileTypes.add(tile.getType());
 				}
 			}
 		}
+
 		return tileTypes;
 	}
-	
+
+	public Creature getCreatureClosestTo(Creature creature) throws NoSuchElementException {
+		return creatures.stream().parallel()
+				.filter(c -> !c.equals(creature))
+				.min(Comparator.comparing(c ->
+						Math.sqrt(Math.pow(c.getX() - creature.getX(), 2) + Math.pow(c.getY() - creature.getY(), 2))))
+				.orElseThrow();
+	}
+
 	public Set<String> getCreatureTypesInArea(Rectangle rectangle) {
 		Set<String> creatureTypes = new HashSet<>();
-		
 		creatureTypes.add(player.getType());
-		
+
 		for (Creature creature : this.creatures) {
-			if (creature.getX() > rectangle.getX() && creature.getX() < rectangle.getMaxX() &&
-					creature.getY() > rectangle.getY() && creature.getY() < rectangle.getMaxY()) {
+			if (creature.getX() > (player.getX() - (rectangle.getWidth() / 2)) &&
+				creature.getX() < (player.getX() + (rectangle.getWidth() / 2)) &&
+				creature.getY() > (player.getY() - (rectangle.getHeight() / 2)) &&
+				creature.getY() < (player.getY() + (rectangle.getHeight() / 2)))
+			{
 				creatureTypes.add(creature.getType());
 			}
 		}
+
+//		OLD CODE: Replaced with the above because it didn't work correctly.
+//
+//		for (Creature creature : this.creatures) {
+//			if (creature.getX() > rectangle.getX() && creature.getX() < rectangle.getMaxX() &&
+//					creature.getY() > rectangle.getY() && creature.getY() < rectangle.getMaxY()) {
+//				creatureTypes.add(creature.getType());
+//				System.out.println(creature.getType());
+//			}
+//		}
 		
 		return creatureTypes;
 	}
 
-	/* Search a specified area for creatures.
+	/** Search a specified area for creatures.
 	 * 	@param      x X-coordinate of search center.
 	 * 	@param      y Y-coordinate of search center.
 	 * 	@param  width Width of search area.

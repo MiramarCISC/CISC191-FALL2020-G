@@ -74,18 +74,18 @@ public class Interface extends JFrame implements KeyListener, MouseListener {
 			terminal.write(glyph + "   " + tileType, x, y);
 			y += 1;
 			
-			if (y == gameViewArea.height+2) {
+			if (y == gameViewArea.height + 2) {
 				x += 15;
 				y = gameViewArea.height;
 			}
 		}
-		
+
 		for (String creatureType : world.getCreatureTypesInArea(gameViewArea)) {
 			glyph = creatureData.get(creatureType).get("glyph").charAt(0);
 			terminal.write(glyph + "   " + creatureType, x, y);
 			y += 1;
 			
-			if (y == gameViewArea.height+5) {
+			if (y == gameViewArea.height + 5) {
 				x += 15;
 				y = gameViewArea.height;
 			}

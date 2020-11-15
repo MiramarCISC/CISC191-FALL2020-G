@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class Roguelike {
 
@@ -84,7 +85,7 @@ public class Roguelike {
         return entityMap;
 	}
 	
-	private void createWorld(){
+	private void createWorld() {
 		player = new Creature(creatureData.get("player"), 30, 30);
 		world = new WorldBuilder(tileData, creatureData, mapWidth, mapHeight)
 				    .fill("wall")
@@ -113,15 +114,27 @@ public class Roguelike {
 				case KeyEvent.VK_S:
 					player.move(world, 0, 1); 
 					break;
+				case KeyEvent.VK_SPACE: // Primitive ranged attack implementation.
+					try {
+						player.attackCreature(world.getCreatureClosestTo(player));
+					} catch (NoSuchElementException e) {
+						System.out.println(e.toString());
+					}
+					break;
 			}
 	    } else if (event instanceof MouseEvent) {
 	    	//
 	    }
 	}
 	
-	public void render(){
+	public void render() {
+		// Clears the terminal.
+		ui.getTerminal().clear();
+		// Writes the game screen to the terminal.
 		ui.pointCameraAt(world, player.getX(), player.getY());
+		// Writes the dynamic legend to the terminal.
 		ui.drawDynamicLegend(gameViewArea, world, tileData, creatureData);
+		// Draws the terminal on the screen.
 		ui.refresh();
 	}
 	

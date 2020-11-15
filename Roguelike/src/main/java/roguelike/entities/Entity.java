@@ -14,11 +14,11 @@ public class Entity {
 	protected char glyph;
 	protected Color color;
 	
-	public int getX() {return x;}
-	public int getY() {return y;}
-    public char getGlyph() {return this.glyph;}
-    public String getType() {return type;}
-    public Color getColor() {return this.color;}
+	public int getX() { return x; }
+	public int getY() { return y; }
+    public char getGlyph() { return this.glyph; }
+    public String getType() { return type; }
+    public Color getColor() { return this.color; }
     
     public Entity(Map<String, String> entityData, int xPos, int yPos) {
     	x = xPos;
