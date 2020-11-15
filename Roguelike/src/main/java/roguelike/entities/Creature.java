@@ -10,14 +10,18 @@ import java.util.Random;
 public class Creature extends Entity {
 
     private int hitPoints;      // Creature's hit points.
+	private int attackDmg;		// Creature's attack damage.
+	private int xpValue;		// Creature's xp value when killed.
     private String behaviour;	// Creatures behaviour type.
     private boolean isDead;		// Tells the game that the creature can be removed once it has been killed.
     
     public Creature(Map<String, String> creatureData, int x, int y) {
         super(creatureData, x, y);
-        this.behaviour = creatureData.get("behaviour");	// Initialize behaviour type from creatureData.
-        this.hitPoints = 100;							// Initialize starting hit points.
-        this.isDead = false;							// Initialize isDead to false.
+		this.hitPoints = Integer.parseInt(creatureData.get("hitPoints")); // Initialize starting hit points.
+		this.attackDmg = Integer.parseInt(creatureData.get("attackDmg")); // Initialize attack damage.
+		this.xpValue = Integer.parseInt(creatureData.get("xpValue"));     // Initialize xp value when killed.
+        this.behaviour = creatureData.get("behaviour");					  // Initialize behaviour type from creatureData.
+        this.isDead = false;											  // Initialize isDead to false.
     }
 
     /** @return True if creature is has been killed. */
@@ -26,7 +30,7 @@ public class Creature extends Entity {
 	}
 
 	/** @return The creature's current hitPoints. */
-    private int getHitPoints() {
+    public int getHitPoints() {
     	return hitPoints;
     }
 
@@ -78,7 +82,7 @@ public class Creature extends Entity {
 	 */
     public void attackCreature(Creature creature) {
     	// Modify the hit points of the creature being attacked.
-    	creature.modifyHitPoints(-10);
+    	creature.modifyHitPoints(-attackDmg);
 
     	// Log the attack to the console for debugging purposes.
     	System.out.println(this.getType() + " attacked " + creature.getType() + " " + creature.getHitPoints() + "/100.");

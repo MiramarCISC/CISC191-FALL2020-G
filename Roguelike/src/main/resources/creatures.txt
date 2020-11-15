@@ -1,4 +1,4 @@
-id, name, glyph, color, behaviour
-0, player, @, white, none
-1, zombie, z, green, aggressive
-2, sheep, s, white, docile
+id, name, glyph, color, behaviour, hitPoints, attackDmg, xpValue
+0, player, @, white, none, 100, 10, 0
+1, zombie, z, green, aggressive, 100, 5, 10
+2, sheep, s, white, docile, 100, 0, 5

@@ -132,6 +132,8 @@ public class Roguelike {
 		ui.getTerminal().clear();
 		// Writes the game screen to the terminal.
 		ui.pointCameraAt(world, player.getX(), player.getY());
+		// Writes the player's HP to the terminal.
+		ui.drawCreatureStats(gameViewArea, world,player);
 		// Writes the dynamic legend to the terminal.
 		ui.drawDynamicLegend(gameViewArea, world, tileData, creatureData);
 		// Draws the terminal on the screen.

@@ -1,6 +1,7 @@
 package roguelike.ui;
 
 import asciiPanel.AsciiPanel;
+import roguelike.entities.Creature;
 import roguelike.graphics.AsciiCamera;
 import roguelike.world.World;
 
@@ -54,26 +55,24 @@ public class Interface extends JFrame implements KeyListener, MouseListener {
     public void pointCameraAt(World world, int xfocus, int yfocus) {
     	camera.lookAt(terminal, world, xfocus, yfocus);
     }
-    
-    public void refresh() {
-    	terminal.repaint();
-    }
-    
-	@Override
-	public void keyPressed(KeyEvent e) {
-		inputQueue.add(e);
+
+	public void drawCreatureStats(Rectangle gameViewArea, World world, Creature creature) {
+		int x = 70;
+		int y = gameViewArea.height;
+
+		terminal.write("HP: " + creature.getHitPoints(), x, y);
 	}
 
 	public void drawDynamicLegend(Rectangle gameViewArea, World world, Map<String, Map<String, String>> tileData, Map<String, Map<String, String>> creatureData) {
 		int x = 5;
 		int y = gameViewArea.height;
 		char glyph;
-		
+
 		for (String tileType : world.getTileTypesInArea(gameViewArea)) {
 			glyph = tileData.get(tileType).get("glyph").charAt(0);
 			terminal.write(glyph + "   " + tileType, x, y);
 			y += 1;
-			
+
 			if (y == gameViewArea.height + 2) {
 				x += 15;
 				y = gameViewArea.height;
@@ -84,12 +83,21 @@ public class Interface extends JFrame implements KeyListener, MouseListener {
 			glyph = creatureData.get(creatureType).get("glyph").charAt(0);
 			terminal.write(glyph + "   " + creatureType, x, y);
 			y += 1;
-			
+
 			if (y == gameViewArea.height + 5) {
 				x += 15;
 				y = gameViewArea.height;
 			}
 		}
+	}
+    
+    public void refresh() {
+    	terminal.repaint();
+    }
+    
+	@Override
+	public void keyPressed(KeyEvent e) {
+		inputQueue.add(e);
 	}
 	
 	@Override
