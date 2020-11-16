@@ -1,6 +1,7 @@
 package roguelike;
 
 import roguelike.entities.Creature;
+import roguelike.entities.Player;
 import roguelike.ui.Interface;
 import roguelike.world.World;
 import roguelike.world.WorldBuilder;
@@ -23,7 +24,7 @@ public class Roguelike {
 	private int timePerLoop = 1000000000 / framesPerSecond;
 	
 	private World world;
-	private Creature player;
+	private Player player;
 	
 	private Map<String,Map<String, String>> creatureData;
 	private Map<String,Map<String, String>> tileData;
@@ -86,7 +87,7 @@ public class Roguelike {
 	}
 	
 	private void createWorld() {
-		player = new Creature(creatureData.get("player"), 30, 30);
+		player = new Player(creatureData.get("player"), 30, 30);
 		world = new WorldBuilder(tileData, creatureData, mapWidth, mapHeight)
 				    .fill("wall")
 				    .createRandomWalkCave(12232, 30, 30, 6000)
@@ -133,7 +134,7 @@ public class Roguelike {
 		// Writes the game screen to the terminal.
 		ui.pointCameraAt(world, player.getX(), player.getY());
 		// Writes the player's HP to the terminal.
-		ui.drawCreatureStats(gameViewArea, world,player);
+		ui.drawPlayerStats(gameViewArea, world, player);
 		// Writes the dynamic legend to the terminal.
 		ui.drawDynamicLegend(gameViewArea, world, tileData, creatureData);
 		// Draws the terminal on the screen.

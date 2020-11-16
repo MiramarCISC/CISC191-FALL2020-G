@@ -2,6 +2,7 @@ package roguelike.ui;
 
 import asciiPanel.AsciiPanel;
 import roguelike.entities.Creature;
+import roguelike.entities.Player;
 import roguelike.graphics.AsciiCamera;
 import roguelike.world.World;
 
@@ -56,11 +57,13 @@ public class Interface extends JFrame implements KeyListener, MouseListener {
     	camera.lookAt(terminal, world, xfocus, yfocus);
     }
 
-	public void drawCreatureStats(Rectangle gameViewArea, World world, Creature creature) {
-		int x = 70;
+	public void drawPlayerStats(Rectangle gameViewArea, World world, Player player) {
+		int x = 60;
 		int y = gameViewArea.height;
 
-		terminal.write("HP: " + creature.getHitPoints(), x, y);
+		terminal.write("   HP: " + player.getHitPoints(), x, y);
+		terminal.write("   XP: " + player.getPlayerXP(), x, y+1);
+		terminal.write("Level: " + player.getLevel(), x, y+2);
 	}
 
 	public void drawDynamicLegend(Rectangle gameViewArea, World world, Map<String, Map<String, String>> tileData, Map<String, Map<String, String>> creatureData) {

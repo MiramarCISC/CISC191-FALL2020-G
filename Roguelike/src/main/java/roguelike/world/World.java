@@ -2,6 +2,7 @@ package roguelike.world;
 
 import roguelike.entities.Creature;
 import roguelike.entities.Entity;
+import roguelike.entities.Player;
 import roguelike.entities.Tile;
 
 import java.awt.*;
@@ -14,7 +15,7 @@ public class World {
 	private Tile[][] tiles;
 	private int width;
 	private int height;
-	public Creature player;
+	public Player player;
 	public Set<Creature> creatures;
 	
 	public int width() { return width; }
@@ -69,6 +70,7 @@ public class World {
 	}
 	
 	public void update() {
+		creatures.stream().filter(Creature::isDead).forEach(creature -> player.addXP(creature));
 		// Remove from the game any creatures that are dead.
 		creatures.removeIf(Creature::isDead);
 		// Call the update method for all creatures, with the exception of the player.
