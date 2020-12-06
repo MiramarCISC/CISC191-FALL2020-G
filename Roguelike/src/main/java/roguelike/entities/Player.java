@@ -8,6 +8,7 @@ public class Player extends Creature {
     private int level;			// Player's current level.
     public Player(Map<String, String> creatureData, int x, int y) {
         super(creatureData, x, y);
+        this.level = 1;
         this.playerXP = 0;
         this.levelThreshold = 100;
     }
