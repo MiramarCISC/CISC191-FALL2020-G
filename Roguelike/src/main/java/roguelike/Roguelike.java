@@ -149,7 +149,7 @@ public class Roguelike {
 		isRunning = true;
 
 		// Run the game until it is stopped or until the player dies.
-		while(isRunning && !player.isDead()) {
+		while(isRunning && player.killedBy() == null) {
 			long startTime = System.nanoTime();
 			
 			processInput();

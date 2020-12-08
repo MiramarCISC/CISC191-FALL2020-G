@@ -70,9 +70,9 @@ public class World {
 	}
 	
 	public void update() {
-		creatures.stream().filter(Creature::isDead).forEach(creature -> player.addXP(creature));
+		creatures.stream().filter(creature -> creature.killedBy() == player).forEach(creature -> player.addXP(creature, 1.0));
 		// Remove from the game any creatures that are dead.
-		creatures.removeIf(Creature::isDead);
+		creatures.removeIf(creature -> creature.killedBy() != null);
 		// Call the update method for all creatures, with the exception of the player.
 		creatures.stream()
 			.filter(creature -> !creature.equals(player))

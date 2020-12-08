@@ -13,7 +13,7 @@ public class Creature extends Entity {
 	private int attackDmg;		// Creature's attack damage.
 	private int xpValue;		// Creature's xp value when killed.
 	private String behaviour;	// Creatures behaviour type.
-	private boolean isDead;		// Tells the game that the creature can be removed once it has been killed.
+	private Creature killedBy;		// Tells the game that the creature can be removed once it has been killed.
 
 	public Creature(Map<String, String> creatureData, int x, int y) {
 		super(creatureData, x, y);
@@ -21,12 +21,12 @@ public class Creature extends Entity {
 		this.attackDmg = Integer.parseInt(creatureData.get("attackDmg")); // Initialize attack damage.
 		this.xpValue = Integer.parseInt(creatureData.get("xpValue"));     // Initialize xp value when killed.
 		this.behaviour = creatureData.get("behaviour");					  // Initialize behaviour type from creatureData.
-		this.isDead = false;											  // Initialize isDead to false.
+		this.killedBy = null;											  // Initialize isDead to false.
 	}
 
 	/** @return True if creature is has been killed. */
-	public boolean isDead() {
-		return isDead;
+	public Creature killedBy() {
+		return killedBy;
 	}
 
 	/** @return The creature's current hitPoints. */
@@ -40,12 +40,12 @@ public class Creature extends Entity {
 	/** Modifies the creature's hitPoints by adding a specified amount.
 	 * 	@param amount Pass a positive number to heal or negative number to damage.
 	 */
-	private void modifyHitPoints(int amount) {
+	private void modifyHitPoints(int amount, Creature attackedBy) {
 		if (hitPoints + amount > 0) {
 			hitPoints += amount;
 		} else {
 			hitPoints = 0;
-			isDead = true;
+			killedBy = attackedBy;
 		}
 	}
 
@@ -85,7 +85,7 @@ public class Creature extends Entity {
 	 */
 	public void attackCreature(Creature creature) {
 		// Modify the hit points of the creature being attacked.
-		creature.modifyHitPoints(-attackDmg);
+		creature.modifyHitPoints(-attackDmg, this);
 
 		// Log the attack to the console for debugging purposes.
 		System.out.println(this.getType() + " attacked " + creature.getType() + " " + creature.getHitPoints() + "/100.");

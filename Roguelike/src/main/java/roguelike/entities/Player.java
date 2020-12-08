@@ -1,6 +1,7 @@
 package roguelike.entities;
 
 import java.util.Map;
+//import java.util.Random;
 
 public class Player extends Creature {
     private int levelThreshold;
@@ -12,6 +13,8 @@ public class Player extends Creature {
         this.playerXP = 0;
         this.levelThreshold = 100;
     }
+
+
 
     /** @return The player's current XP. */
     public int getPlayerXP() { return playerXP; }
@@ -25,16 +28,16 @@ public class Player extends Creature {
     /** Adds XP value with a constant (maybe 20)
      *  @param creature Pass a positive number if player did something good, i.e. killing a creature.
      */
-    public void addXP(Creature creature) {
-        playerXP += creature.getXpValue();
+
+    /** Add multiplier and randomizes whether a critical attack is made or not */
+    public void addXP(Creature creature, double xpMultiplier) {
+        playerXP += creature.getXpValue() * xpMultiplier;
+
+
         // if playerXP > levelThreshold += 1. ----- levelThreshold * 2.1
         if (playerXP > levelThreshold) {
             level++;
             levelThreshold *= 2.1;
         }
     }
-//    while (xpValue > (int)(Math.pow(level, 1.5) * 15)) {
-//        level++;
-//        System.out.println("LEVEL UP!" + level);
-//    }
 }
