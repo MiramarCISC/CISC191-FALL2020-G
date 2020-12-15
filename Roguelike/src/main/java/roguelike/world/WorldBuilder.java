@@ -1,3 +1,10 @@
+/*
+	Original class created by Jelle Pelgrims.
+
+ 	Contributions for CISC191 Roguelike project
+  	from Joshua Monroe and Christopher Lee.
+*/
+
 package roguelike.world;
 
 import roguelike.entities.Creature;
@@ -19,7 +26,7 @@ public class WorldBuilder {
 		this.tiles = new Tile[width][height];
 		this.tileData = tileData;
 		this.creatureData = creatureData;
-		this.creatures = new HashSet<Creature>();
+		this.creatures = new HashSet<>();
 	}
 
 	public WorldBuilder load(String file) {
@@ -78,7 +85,7 @@ public class WorldBuilder {
 				rndY = rnd.nextInt(height);
 			} while (tiles[rndX][rndY].isBlocked());
 			
-			List<String> creatureTypes = new ArrayList<String>(creatureData.keySet());
+			List<String> creatureTypes = new ArrayList<>(creatureData.keySet());
 			creatureTypes.remove("player");
 			String creatureType = creatureTypes.get(rnd.nextInt(creatureTypes.size()));
 			
@@ -91,7 +98,7 @@ public class WorldBuilder {
 
 	// Method by Christopher.
 	public WorldBuilder createRandomWalkCave(int seed, int x, int y, int length) {
-		int probDir=(int)Math.random()*4;
+		int probDir=(int)(Math.random()*4);
 		int failedInRow=0;
 		int steps=0;
 		int totalsteps=0;

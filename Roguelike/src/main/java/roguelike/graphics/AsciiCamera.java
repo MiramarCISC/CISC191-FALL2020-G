@@ -1,3 +1,7 @@
+/*
+	Class created by Jelle Pelgrims.
+*/
+
 package roguelike.graphics;
 
 import asciiPanel.AsciiPanel;

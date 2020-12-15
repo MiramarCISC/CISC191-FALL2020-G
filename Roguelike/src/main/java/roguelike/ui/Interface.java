@@ -1,3 +1,10 @@
+/*
+	Original class created by Jelle Pelgrims.
+
+ 	Contributions for CISC191 Roguelike project
+  	from Joshua Monroe and Darius Yeung.
+*/
+
 package roguelike.ui;
 
 import asciiPanel.AsciiPanel;
@@ -76,7 +83,7 @@ public class Interface extends JFrame implements KeyListener, MouseListener {
 			terminal.write(glyph + "   " + tileType, x, y);
 			y += 1;
 
-			if (y == gameViewArea.height + 2) {
+			if (y == gameViewArea.height + 3) {
 				x += 15;
 				y = gameViewArea.height;
 			}
@@ -87,11 +94,21 @@ public class Interface extends JFrame implements KeyListener, MouseListener {
 			terminal.write(glyph + "   " + creatureType, x, y);
 			y += 1;
 
-			if (y == gameViewArea.height + 5) {
+			if (y == gameViewArea.height + 3) {
 				x += 15;
 				y = gameViewArea.height;
 			}
 		}
+	}
+
+	public void drawDeathMessage(Rectangle gameViewArea, World world, Player player) {
+		int x = 36;
+		int y = 12;
+
+		terminal.write("--- YOU DIED! ---", x - 4, y);
+		terminal.write("   XP: " + player.getPlayerXP(), x, y + 2);
+		terminal.write("Level: " + player.getLevel(), x, y + 3);
+		terminal.write("-----------------", x - 4, y + 5);
 	}
     
     public void refresh() {

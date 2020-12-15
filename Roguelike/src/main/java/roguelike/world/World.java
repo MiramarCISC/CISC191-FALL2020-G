@@ -1,3 +1,10 @@
+/*
+	Original class created by Jelle Pelgrims.
+
+ 	Contributions for CISC191 Roguelike project
+  	from Joshua Monroe.
+*/
+
 package roguelike.world;
 
 import roguelike.entities.Creature;

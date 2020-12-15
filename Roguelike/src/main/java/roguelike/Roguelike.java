@@ -1,6 +1,12 @@
+/*
+	Original class created by Jelle Pelgrims.
+
+ 	Contributions for CISC191 Roguelike project
+  	from Joshua Monroe and Christopher Lee.
+*/
+
 package roguelike;
 
-import roguelike.entities.Creature;
 import roguelike.entities.Player;
 import roguelike.ui.Interface;
 import roguelike.world.World;
@@ -10,9 +16,11 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -90,9 +98,9 @@ public class Roguelike {
 		player = new Player(creatureData.get("player"), 30, 30);
 		world = new WorldBuilder(tileData, creatureData, mapWidth, mapHeight)
 				    .fill("wall")
-				    .createRandomWalkCave(12232, 30, 30, 6000)
+				    .createRandomWalkCave(89769, 30, 30, 50000)
 				    .addBorders()
-				    .populateWorld(20)
+				    .populateWorld(200)
 					.build();
 		world.player = player;
 		world.addEntity(player);
@@ -104,16 +112,16 @@ public class Roguelike {
 	    	KeyEvent keypress = (KeyEvent)event;
 	    	switch (keypress.getKeyCode()){
 				case KeyEvent.VK_A:
-					player.move(world, -1, 0); 
+					player.move(world, -1,0);
 					break;
 				case KeyEvent.VK_D:
 					player.move(world, 1, 0);
 					break;
 				case KeyEvent.VK_W:
-					player.move(world, 0, -1); 
+					player.move(world, 0,-1);
 					break;
 				case KeyEvent.VK_S:
-					player.move(world, 0, 1); 
+					player.move(world, 0, 1);
 					break;
 				case KeyEvent.VK_SPACE: // Primitive ranged attack implementation.
 					try {
@@ -123,8 +131,6 @@ public class Roguelike {
 					}
 					break;
 			}
-	    } else if (event instanceof MouseEvent) {
-	    	//
 	    }
 	}
 	
@@ -137,6 +143,15 @@ public class Roguelike {
 		ui.drawPlayerStats(gameViewArea, world, player);
 		// Writes the dynamic legend to the terminal.
 		ui.drawDynamicLegend(gameViewArea, world, tileData, creatureData);
+		// Draws the terminal on the screen.
+		ui.refresh();
+	}
+
+	public void showDeathScreen() {
+		// Clears the terminal.
+		ui.getTerminal().clear();
+		//
+		ui.drawDeathMessage(gameViewArea, world, player);
 		// Draws the terminal on the screen.
 		ui.refresh();
 	}
@@ -169,10 +184,11 @@ public class Roguelike {
 				}
 			}
 		}
+		showDeathScreen();
 	}
 	
 	public static void main(String[] args) {
-		Roguelike game = new Roguelike(80, 24);
+		Roguelike game = new Roguelike(80, 32);
 		game.run();
 	}
 	

@@ -1,3 +1,7 @@
+/*
+	Class created by Jelle Pelgrims.
+*/
+
 package roguelike.entities;
 
 import roguelike.Roguelike;

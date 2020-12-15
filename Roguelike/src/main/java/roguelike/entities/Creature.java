@@ -1,3 +1,10 @@
+/*
+	Original class created by Jelle Pelgrims.
+
+ 	Contributions for CISC191 Roguelike project
+  	from Joshua Monroe and Darius Yeung.
+*/
+
 package roguelike.entities;
 
 import roguelike.world.World;
@@ -94,45 +101,94 @@ public class Creature extends Entity {
 	public void update(World world) {
 		Random rnd = new Random();
 		int performAction = rnd.nextInt(100);
+
 		if (behaviour.equals("docile") && performAction > 94) {
+
 			// walk around and flee if attacked
+			fleeCreature(world,10);
 
-			int rndNr = rnd.nextInt(3);
+		} else if (behaviour.equals("aggressive") && performAction > 95) {
 
-			switch (rndNr) {
-				case 0:
-					move(world, 1, 0);
-					break;
-				case 1:
-					move(world, -1, 0);
-					break;
-				case 2:
-					move(world, 0, 1);
-					break;
-				case 3:
-					move(world, 0, -1);
-					break;
-			}
-
-		} else if (behaviour.equals("aggressive") && performAction > 94) {
 			// look for other npcs and hunt them
-			List<Creature> creatures = world.getCreaturesInArea(this.x, this.y, 10, 10);
-			creatures.remove(this);
+			chaseCreature(world, 10);
 
-			if (creatures.size() > 0) {
-				Creature creature = creatures.get(0);
+		} else if (behaviour.equals("scavenger") && performAction > 94) {
 
-				if (this.x > creature.getX()) {
-					this.move (world, -1, 0);
-				} else if (this.x < creature.getX()) {
-					this.move (world, 1, 0);
-				} else if (this.y > creature.getY()) {
-					this.move (world, 0, -1);
-				} else if (this.y < creature.getY()) {
-					this.move (world, 0, 1);
-				}
+			// look for other npcs and hunt them
+			if (hitPoints > 40) {
+				chaseCreature(world, 20);
+			} else {
+				fleeCreature(world, 20);
 			}
-		}
 
+		} else if (behaviour.equals("hunter") && performAction > 94) {
+
+			// look for other npcs and hunt them
+			chaseCreature(world, 40);
+
+		}
+	}
+
+	public void wanderRandomly(World world) {
+		Random rnd = new Random();
+
+		int rndNr = rnd.nextInt(3);
+
+		switch (rndNr) {
+			case 0:
+				move(world, 1, 0);
+				break;
+			case 1:
+				move(world, -1, 0);
+				break;
+			case 2:
+				move(world, 0, 1);
+				break;
+			case 3:
+				move(world, 0, -1);
+				break;
+		}
+	}
+
+	public void chaseCreature(World world, int searchSize) {
+		List<Creature> creatures = world.getCreaturesInArea(this.x, this.y, searchSize, searchSize);
+		creatures.remove(this);
+
+		if (creatures.size() > 0) {
+			Creature creature = creatures.get(0);
+
+			if (this.x > creature.getX()) {
+				this.move (world, -1, 0);
+			} else if (this.x < creature.getX()) {
+				this.move (world, 1, 0);
+			} else if (this.y > creature.getY()) {
+				this.move (world, 0, -1);
+			} else if (this.y < creature.getY()) {
+				this.move (world, 0, 1);
+			}
+		} else {
+			wanderRandomly(world);
+		}
+	}
+
+	public void fleeCreature(World world, int searchSize) {
+		List<Creature> creatures = world.getCreaturesInArea(this.x, this.y, searchSize, searchSize);
+		creatures.remove(this);
+
+		if (creatures.size() > 0) {
+			Creature creature = creatures.get(0);
+
+			if (this.x > creature.getX()) {
+				this.move (world, 1, 0);
+			} else if (this.x < creature.getX()) {
+				this.move (world, -1, 0);
+			} else if (this.y > creature.getY()) {
+				this.move (world, 0, 1);
+			} else if (this.y < creature.getY()) {
+				this.move (world, 0, -1);
+			}
+		} else {
+			wanderRandomly(world);
+		}
 	}
 }
